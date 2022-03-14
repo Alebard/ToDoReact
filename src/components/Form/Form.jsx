@@ -13,9 +13,11 @@ function Form(props) {
 
     function addTask (e){
         e.preventDefault();
+        if(value.length < 1){
+            return
+        }
         const task = {title: value, status: true, priority: props.priority, id: getRandomId()};
         props.setTasks([task, ...props.tasks]);
-        console.log(props.tasks)
         setValue('')
     }
 
