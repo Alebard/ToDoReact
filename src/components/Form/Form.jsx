@@ -5,17 +5,18 @@ import {useState} from "react";
 
 
 function Form(props) {
-    const [taskName, setTaskName] = useState('')
+    const [value, setValue] = useState('')
 
     function saveTaskName(e) {
-        setTaskName(e.target.value)
+        setValue(e.target.value)
     }
 
     function addTask (e){
         e.preventDefault();
-        const task = {title: taskName, status: true, priority: props.priority, id: getRandomId()};
+        const task = {title: value, status: true, priority: props.priority, id: getRandomId()};
         props.setTasks([task, ...props.tasks]);
         console.log(props.tasks)
+        setValue('')
     }
 
     function getRandomId(){
@@ -24,9 +25,9 @@ function Form(props) {
 
     const placeholderText = props.priority === 'high'? 'Добавить важных дел' : 'Добавить'
     return(
-            <form className="tasks__form">
-                <input type="text" className="tasks__input" placeholder={placeholderText} onChange={saveTaskName}/>
-                    <button className="btnAdd" onClick={addTask}>
+            <form className="tasks__form" onSubmit={addTask}>
+                <input type="text" value={value} className="tasks__input" placeholder={placeholderText} onChange={saveTaskName}/>
+                    <button className="btnAdd">
                         <img src={icon} alt="plus"/>
                     </button>
             </form>

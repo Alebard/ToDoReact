@@ -8,7 +8,7 @@ function TasksPriority(props) {
             <div className="tasks__block_title">{props.priority}</div>
             <Form priority={props.priority} tasks = {props.tasks} setTasks={props.setTasks}/>
             {tasksList.map((task) => (
-                <Task task={task} key={task.id} />
+                <Task task={task} key={task.id} tasks = {props.tasks} setTasks={props.setTasks} />
             ))}
         </div>
     )
